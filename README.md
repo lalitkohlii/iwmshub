@@ -37,10 +37,11 @@ If you want to learn more about Quarkus, please visit its website: <https://quar
    ```
 
 3. **Access the application:**
-   - **Application**: http://localhost:8080
+   - **Application APIs**: http://localhost:8080/api/
+   - **Health Check**: http://localhost:8080/api/v1/health
    - **Dev UI**: http://localhost:8080/q/dev/
    - **Swagger UI**: http://localhost:8080/q/swagger-ui/
-   - **Health Check**: http://localhost:8080/q/health/
+   - **System Health**: http://localhost:8080/q/health/
 
 ## 📁 Project Structure
 
@@ -60,15 +61,24 @@ src/main/java/com/iwmshub/
 
 ## 🔧 Available Endpoints
 
-### Health & Monitoring
+### Application APIs (All prefixed with `/api`)
+
+#### Health & Monitoring (`/api/v1/health`)
 - `GET /api/v1/health` - Application health status
 - `GET /api/v1/health/ready` - Readiness check
+
+#### IWMS Operations (`/api/v1/iwms`)
+- `GET /api/v1/iwms/data/{id}` - Get data by ID
+- `POST /api/v1/iwms/data` - Create new data
+- `PUT /api/v1/iwms/data/{id}` - Update existing data
+- `DELETE /api/v1/iwms/data/{id}` - Delete data by ID
+
+### System APIs (Quarkus - No `/api` prefix)
 - `GET /q/health` - Comprehensive health checks
 - `GET /q/metrics` - Application metrics
-
-### API Documentation
 - `GET /q/swagger-ui` - Interactive API documentation
 - `GET /q/openapi` - OpenAPI specification
+- `GET /q/dev` - Development UI
 
 ## 🏗️ Building and Packaging
 
