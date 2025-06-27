@@ -1,4 +1,4 @@
-# API Documentation - IWMS Hub
+# API Documentation - IWMS-Hub
 
 ## Base URL Structure
 
@@ -108,7 +108,17 @@ The API base path is configured in `application.properties`:
 ```properties
 # Sets all application endpoints to start with /api
 quarkus.http.root-path=/api
+
+# Ensures proper URL generation in development (fixes 0.0.0.0 issue)
+%dev.quarkus.http.host=localhost
+
+# OpenAPI/Swagger Configuration
+quarkus.swagger-ui.always-include=true
+quarkus.swagger-ui.path=/q/swagger-ui
+quarkus.smallrye-openapi.path=/q/openapi
 ```
+
+Additionally, server URLs are configured programmatically in `OpenApiConfig.java` to ensure Swagger UI shows correct localhost URLs instead of 0.0.0.0.
 
 ## Development URLs
 
@@ -142,14 +152,55 @@ public class YourController {
 
 ## Testing
 
-Test your endpoints using the configured base path:
+Test your endpoints using the configured base path. Note that in tests, you should use relative paths (without `/api`), as the root path is automatically applied:
 
 ```java
 @Test
 void testEndpoint() {
     given()
-      .when().get("/api/v1/your-endpoint")
+      .when().get("/v1/your-endpoint")  // Becomes /api/v1/your-endpoint automatically
       .then()
          .statusCode(200);
 }
 ```
+
+For manual testing with curl, use the full URL:
+```bash
+curl http://localhost:8080/api/v1/your-endpoint
+```
+
+## Troubleshooting
+
+### Swagger UI Showing Wrong URLs
+
+If Swagger UI shows URLs like `http://0.0.0.0:8080/api/...` instead of `http://localhost:8080/api/...`:
+
+1. **Check Development Configuration**: Ensure `%dev.quarkus.http.host=localhost` is set in `application.properties`
+
+2. **Verify OpenAPI Configuration**: The `OpenApiConfig.java` class should define proper server URLs:
+   ```java
+   @Server(url = "http://localhost:8080/api", description = "Development Server")
+   ```
+
+3. **Clear Browser Cache**: Sometimes browsers cache the OpenAPI specification
+
+4. **Restart Development Server**: 
+   ```bash
+   # Stop current server (Ctrl+C)
+   gradlew quarkusDev
+   ```
+
+### API Endpoints Not Working
+
+If your API endpoints return 404 errors:
+
+1. **Verify Base Path**: All application endpoints should be accessed with `/api` prefix
+2. **Check Controller Paths**: Controllers should use relative paths (e.g., `@Path("/v1/resource")`)
+3. **Confirm Server is Running**: Check that `gradlew quarkusDev` is running without errors
+
+### System Endpoints Not Accessible
+
+If Quarkus system endpoints (like `/q/health`) are not working:
+
+1. **Don't Use /api Prefix**: System endpoints should be accessed directly (e.g., `http://localhost:8080/q/health`)
+2. **Check Configuration**: Ensure system endpoints are enabled in `application.properties`

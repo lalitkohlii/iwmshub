@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# API Verification Script for IWMS Hub
+# API Verification Script for IWMS-Hub
 
-echo "Testing IWMS Hub API endpoints..."
+echo "Testing IWMS-Hub API endpoints..."
 echo
 
 # Start the application in background (this would need to be done manually)

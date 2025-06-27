@@ -1,4 +1,4 @@
-# IWMS Hub - Code Management Guide
+# IWMS-Hub - Code Management Guide
 
 ## Project Structure
 

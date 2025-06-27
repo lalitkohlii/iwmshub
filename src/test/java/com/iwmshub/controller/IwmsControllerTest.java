@@ -12,7 +12,7 @@ class IwmsControllerTest {
     @Test
     void testGetData() {
         given()
-          .when().get("/api/v1/iwms/data/test123")
+          .when().get("/v1/iwms/data/test123")  // root-path /api is automatically added
           .then()
              .statusCode(200)
              .body(containsString("test123"))
@@ -24,7 +24,7 @@ class IwmsControllerTest {
         given()
           .contentType("application/json")
           .body("test data")
-          .when().post("/api/v1/iwms/data")
+          .when().post("/v1/iwms/data")  // root-path /api is automatically added
           .then()
              .statusCode(201)
              .body(containsString("created successfully"));
@@ -35,7 +35,7 @@ class IwmsControllerTest {
         given()
           .contentType("application/json")
           .body("updated data")
-          .when().put("/api/v1/iwms/data/test123")
+          .when().put("/v1/iwms/data/test123")  // root-path /api is automatically added
           .then()
              .statusCode(200)
              .body(containsString("updated successfully"));
@@ -44,7 +44,7 @@ class IwmsControllerTest {
     @Test
     void testDeleteData() {
         given()
-          .when().delete("/api/v1/iwms/data/test123")
+          .when().delete("/v1/iwms/data/test123")  // root-path /api is automatically added
           .then()
              .statusCode(200)
              .body(containsString("deleted successfully"));

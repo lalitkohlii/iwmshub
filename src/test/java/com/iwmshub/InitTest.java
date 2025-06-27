@@ -12,7 +12,7 @@ class HealthControllerTest {
     @Test
     void testHealthEndpoint() {
         given()
-          .when().get("/api/v1/health")
+          .when().get("/v1/health")  // root-path /api is automatically added
           .then()
              .statusCode(200)
              .body(containsString("UP"))
@@ -22,7 +22,7 @@ class HealthControllerTest {
     @Test
     void testReadyEndpoint() {
         given()
-          .when().get("/api/v1/health/ready")
+          .when().get("/v1/health/ready")  // root-path /api is automatically added
           .then()
              .statusCode(200)
              .body(containsString("READY"));

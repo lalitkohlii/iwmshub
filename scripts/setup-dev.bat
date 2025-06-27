@@ -1,7 +1,7 @@
 @echo off
-REM Development setup script for IWMS Hub (Windows)
+REM Development setup script for IWMS-Hub (Windows)
 
-echo Setting up IWMS Hub development environment...
+echo Setting up IWMS-Hub development environment...
 
 REM Check if Java 21 is available
 echo Checking Java version...

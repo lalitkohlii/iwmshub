@@ -1,4 +1,4 @@
-# IWMS Hub
+# IWMS-Hub
 
 **Integrated Workplace Management System Hub** - A comprehensive REST API built with Quarkus framework for managing workplace operations.
 

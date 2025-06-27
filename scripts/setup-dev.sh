@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Development setup script for IWMS Hub
+# Development setup script for IWMS-Hub
 
-echo "Setting up IWMS Hub development environment..."
+echo "Setting up IWMS-Hub development environment..."
 
 # Check if Java 21 is available
 echo "Checking Java version..."

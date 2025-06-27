@@ -1,7 +1,7 @@
 @echo off
-REM API Verification Script for IWMS Hub
+REM API Verification Script for IWMS-Hub
 
-echo Testing IWMS Hub API endpoints...
+echo Testing IWMS-Hub API endpoints...
 echo.
 
 REM Start the application in background (this would need to be done manually)

@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
- * Application configuration class for IWMS Hub
+ * Application configuration class for IWMS-Hub
  * Centralizes configuration properties and provides type-safe access
  */
 @ApplicationScoped
