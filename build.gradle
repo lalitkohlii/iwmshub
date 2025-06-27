@@ -10,11 +10,27 @@ repositories {
 
 dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    implementation 'io.quarkus:quarkus-smallrye-openapi'
-    implementation 'io.quarkus:quarkus-resteasy'
-    implementation 'io.quarkus:quarkus-agroal'
-    implementation 'io.quarkus:quarkus-resteasy-links'
+    
+    // Core Quarkus dependencies
     implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-resteasy-jackson'
+    
+    // OpenAPI/Swagger
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+    
+    // Health checks
+    implementation 'io.quarkus:quarkus-smallrye-health'
+    
+    // Database
+    implementation 'io.quarkus:quarkus-agroal'
+    
+    // Configuration
+    implementation 'io.quarkus:quarkus-config-yaml'
+    
+    // Validation
+    implementation 'io.quarkus:quarkus-hibernate-validator'
+    
+    // Testing
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 }
